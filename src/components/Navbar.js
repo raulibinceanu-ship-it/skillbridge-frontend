@@ -3,6 +3,7 @@ function Navbar() {
     <div style={{ backgroundColor: "#eee", padding: "10px" }}>
       <h2>SkillBridge</h2>
       <a href="/">Home</a> |<a href="/login"> Login</a>
+      <a href="/login">Login</a> |<a href="/create-service">Create Service</a>
     </div>
   );
 }
