@@ -1,15 +1,6 @@
-function ServiceCard({ service }) {
+function ServiceCard({ service, onDelete }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "10px",
-        padding: "15px",
-        margin: "10px",
-        width: "250px",
-        boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
-      }}
-    >
+    <div className="card">
       <h3>{service.title}</h3>
 
       <p>{service.description}</p>
@@ -19,6 +10,8 @@ function ServiceCard({ service }) {
       </p>
 
       <p>{service.category}</p>
+
+      {onDelete && <button onClick={() => onDelete(service.id)}>Delete</button>}
     </div>
   );
 }
