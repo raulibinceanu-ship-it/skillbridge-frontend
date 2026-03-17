@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import CreateService from "./pages/CreateService";
 import MyServices from "./pages/MyServices";
+import "./App.css";
 function App() {
   const path = window.location.pathname;
   return (

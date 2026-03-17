@@ -11,10 +11,10 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Available Services</h1>
 
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div className="services">
         {services.map((service) => (
           <ServiceCard key={service.id} service={service} />
         ))}
