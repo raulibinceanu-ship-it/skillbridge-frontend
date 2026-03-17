@@ -15,20 +15,25 @@ function Login() {
         password: password,
       }),
     })
-      .then((res) => res.text())
-      .then((token) => {
-        localStorage.setItem("token", token);
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        // salva il token nel localStorage
+        localStorage.setItem("token", data.token);
 
         alert("Login effettuato!");
+
+        window.location.href = "/";
       });
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="container">
+      <h1>Login</h1>
 
       <input
-        placeholder="email"
+        placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -37,7 +42,7 @@ function Login() {
 
       <input
         type="password"
-        placeholder="password"
+        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />

@@ -24,7 +24,8 @@ function MyServices() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setServices(data));
+      .then((data) => setServices(data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (

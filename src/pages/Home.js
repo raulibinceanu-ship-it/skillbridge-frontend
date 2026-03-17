@@ -6,8 +6,16 @@ function Home() {
 
   useEffect(() => {
     fetch("http://localhost:8080/api/services")
-      .then((res) => res.json())
-      .then((data) => setServices(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Errore nel fetch");
+        }
+        return res.json();
+      })
+      .then((data) => setServices(data))
+      .catch((error) => {
+        console.log("Errore gestito:", error);
+      });
   }, []);
 
   return (
