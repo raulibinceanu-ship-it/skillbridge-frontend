@@ -11,19 +11,17 @@ function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email,
+        password,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log("RISPOSTA LOGIN:", data);
 
-        // salva il token nel localStorage
         localStorage.setItem("token", data.token);
 
         alert("Login effettuato!");
-
         window.location.href = "/";
       });
   };
@@ -32,24 +30,25 @@ function Login() {
     <div className="container">
       <h1>Login</h1>
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="form">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <br />
-
-      <button onClick={handleLogin}>Login</button>
+        <button className="button" onClick={handleLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }

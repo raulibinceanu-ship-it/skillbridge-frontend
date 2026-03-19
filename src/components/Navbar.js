@@ -1,28 +1,15 @@
+import { Link } from "react-router";
 function Navbar() {
   return (
-    <div
-      style={{
-        backgroundColor: "#222",
-        padding: "15px",
-        color: "white",
-        display: "flex",
-        gap: "20px",
-      }}
-    >
+    <div className="navbar">
       <h2>SkillBridge</h2>
 
-      <a href="/" style={{ color: "white" }}>
-        Home
-      </a>
-      <a href="/login" style={{ color: "white" }}>
-        Login
-      </a>
-      <a href="/create-service" style={{ color: "white" }}>
-        Create
-      </a>
-      <a href="/my-services" style={{ color: "white" }}>
-        My Services
-      </a>
+      <div>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/create-service">Create</Link>
+        <Link to="/my-services">My Services</Link>
+      </div>
     </div>
   );
 }
