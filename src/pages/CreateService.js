@@ -1,11 +1,17 @@
 import { useState } from "react";
-
+import { useEffect } from "react";
 function CreateService() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
+    if (!token) {
+      window.location.href = "/login";
+    }
+  }, []);
   const createService = () => {
     console.log("CLICK");
 

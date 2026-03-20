@@ -22,7 +22,7 @@ function Login() {
         localStorage.setItem("token", data.token);
 
         alert("Login effettuato!");
-        window.location.href = "/";
+        window.location.href = "/my-services";
       });
   };
 

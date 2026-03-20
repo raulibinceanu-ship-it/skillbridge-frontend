@@ -8,7 +8,7 @@ function MyServices() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      console.log("NO TOKEN → login necessario");
+      window.location.href = "/login";
       return;
     }
 
