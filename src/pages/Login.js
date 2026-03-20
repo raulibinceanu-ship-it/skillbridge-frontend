@@ -48,6 +48,9 @@ function Login() {
         <button className="button" onClick={handleLogin}>
           Login
         </button>
+        <p style={{ marginTop: "10px" }}>
+          Don't have an account? <a href="/register">Register</a>
+        </p>
       </div>
     </div>
   );

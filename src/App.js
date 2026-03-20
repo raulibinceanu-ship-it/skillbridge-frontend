@@ -5,7 +5,7 @@ import CreateService from "./pages/CreateService";
 import MyServices from "./pages/MyServices";
 import Navbar from "./components/Navbar";
 import "./App.css";
-
+import Register from "./pages/Register";
 function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/create-service" element={<CreateService />} />
         <Route path="/my-services" element={<MyServices />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
