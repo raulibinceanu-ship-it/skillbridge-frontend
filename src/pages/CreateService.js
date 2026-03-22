@@ -47,25 +47,31 @@ function CreateService() {
 
       <div className="form">
         <input
-          placeholder="Title"
+          placeholder="Title (ex.I will build your website)"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <input
-          placeholder="Description"
+        <textarea
+          placeholder="Describe what you offer, what is included, delivery time..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          style={{
+            height: "100px",
+            marginBottom: "10px",
+            padding: "8px",
+            width: "100%",
+          }}
         />
 
         <input
-          placeholder="Price"
+          placeholder="Price (ex. 50)"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
 
         <input
-          placeholder="Category"
+          placeholder="Category (ex. Web Development)"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />

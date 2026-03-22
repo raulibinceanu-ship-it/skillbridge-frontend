@@ -24,6 +24,7 @@ function ServiceCard({ service, onDelete }) {
         transition: "0.2s",
       }}
     >
+      <p style={{ fontSize: "12px", color: "gray" }}>{service.category}</p>
       <h3>{service.title}</h3>
 
       <p style={{ color: "#555" }}>{service.description}</p>

@@ -17,27 +17,55 @@ function ServiceDetail() {
   }
 
   return (
-    <div className="container">
-      <h1>{service.title}</h1>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "40px",
+        padding: "40px",
+      }}
+    >
+      {/* SINISTRA */}
+      <div style={{ width: "60%" }}>
+        <h1>{service.title}</h1>
 
-      <p style={{ marginTop: "20px" }}>{service.description}</p>
+        <p style={{ marginTop: "20px", lineHeight: "1.6" }}>
+          {service.description}
+        </p>
 
-      <h2 style={{ marginTop: "20px" }}>{service.price} €</h2>
+        <p style={{ marginTop: "20px", color: "gray" }}>
+          Category: {service.category}
+        </p>
+      </div>
 
-      <p style={{ color: "gray" }}>{service.category}</p>
-
-      <button
+      {/* DESTRA (BOX PREZZO) */}
+      <div
         style={{
-          marginTop: "20px",
-          padding: "10px",
-          backgroundColor: "green",
-          color: "white",
-          border: "none",
-          cursor: "pointer",
+          width: "250px",
+          border: "1px solid #ddd",
+          borderRadius: "10px",
+          padding: "20px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          height: "fit-content",
         }}
       >
-        Contact Seller
-      </button>
+        <h2>{service.price} €</h2>
+
+        <button
+          style={{
+            marginTop: "20px",
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "green",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+            borderRadius: "5px",
+          }}
+        >
+          Continue
+        </button>
+      </div>
     </div>
   );
 }
