@@ -15,14 +15,18 @@ function Login() {
         password,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Login failed");
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log("RISPOSTA LOGIN:", data);
-
         localStorage.setItem("token", data.token);
-
-        alert("Login effettuato!");
         window.location.href = "/my-services";
+      })
+      .catch(() => {
+        alert("Email or password incorrect");
       });
   };
 

@@ -11,10 +11,14 @@ function Home() {
   useEffect(() => {
     setLoading(true);
 
-    let url = "http://localhost:8080/api/services";
+    let url = "http://localhost:8080/api/services/filter?";
 
-    if (category || maxPrice) {
-      url += `?category=${category}&maxPrice=${maxPrice}`;
+    if (category) {
+      url += "category=" + category + "&";
+    }
+
+    if (maxPrice) {
+      url += "maxPrice=" + maxPrice;
     }
 
     fetch(url)

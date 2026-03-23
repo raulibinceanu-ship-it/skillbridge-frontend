@@ -50,9 +50,29 @@ function ServiceCard({ service, onDelete }) {
             padding: "5px 10px",
             borderRadius: "5px",
             cursor: "pointer",
+            marginTop: "10px",
           }}
         >
           Delete
+        </button>
+      )}
+      {onDelete && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            window.location.href = "/edit/" + service.id;
+          }}
+          style={{
+            backgroundColor: "blue",
+            color: "white",
+            border: "none",
+            padding: "5px 10px",
+            borderRadius: "5px",
+            cursor: "pointer",
+            marginTop: "5px",
+          }}
+        >
+          Edit
         </button>
       )}
     </div>

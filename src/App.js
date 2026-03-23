@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import Register from "./pages/Register";
 import ServiceDetail from "./pages/ServiceDetail";
+import EditService from "./pages/EditService";
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/create-service" element={<CreateService />} />
         <Route path="/my-services" element={<MyServices />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/edit/:id" element={<EditService />} />
         <Route path="/service/:id" element={<ServiceDetail />} />
       </Routes>
     </Router>

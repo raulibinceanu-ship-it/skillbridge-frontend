@@ -3,6 +3,20 @@ import ServiceCard from "../components/ServiceCard";
 
 function MyServices() {
   const [services, setServices] = useState([]);
+  const deleteService = (id) => {
+    const token = localStorage.getItem("token");
+
+    fetch("http://localhost:8080/api/services/" + id, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then(() => {
+        setServices(services.filter((s) => s.id !== id));
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -37,14 +51,18 @@ function MyServices() {
 
   return (
     <div className="container">
-      <h1>My Services</h1>
+      <h1 style={{ textAlign: "center" }}>My Services</h1>
 
       {services.length === 0 ? (
         <p style={{ textAlign: "center" }}>No services yet</p>
       ) : (
         <div className="services-grid">
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <ServiceCard
+              key={service.id}
+              service={service}
+              onDelete={deleteService}
+            />
           ))}
         </div>
       )}
