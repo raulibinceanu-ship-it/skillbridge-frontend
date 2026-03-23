@@ -33,34 +33,53 @@ function ServiceDetail() {
           {service.description}
         </p>
 
-        <p style={{ marginTop: "20px", color: "gray" }}>
+        <hr style={{ margin: "20px 0" }} />
+
+        <h3>About this service</h3>
+        <p>
+          This service includes full support and delivery based on your needs.
+        </p>
+
+        <p style={{ marginTop: "10px", color: "gray" }}>
           Category: {service.category}
         </p>
       </div>
 
-      {/* DESTRA (BOX PREZZO) */}
+      {/* DESTRA */}
       <div
         style={{
-          width: "250px",
+          width: "280px",
           border: "1px solid #ddd",
           borderRadius: "10px",
           padding: "20px",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
           height: "fit-content",
         }}
       >
         <h2>{service.price} €</h2>
 
+        <p style={{ fontSize: "14px", color: "gray" }}>Delivery in 3 days</p>
+
         <button
+          onClick={() => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+              alert("Login required");
+              window.location.href = "/login";
+            } else {
+              alert("Order placed (fake)");
+            }
+          }}
           style={{
             marginTop: "20px",
             width: "100%",
             padding: "10px",
-            backgroundColor: "green",
+            backgroundColor: "#1dbf73",
             color: "white",
             border: "none",
-            cursor: "pointer",
             borderRadius: "5px",
+            cursor: "pointer",
           }}
         >
           Continue
