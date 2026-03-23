@@ -36,7 +36,9 @@ function ServiceCard({ service, onDelete }) {
         }}
       />
       <h3>{service.title}</h3>
-
+      <p style={{ fontSize: "12px", color: "gray" }}>
+        by {service.freelancer?.email || "User"}
+      </p>
       <p style={{ color: "#555" }}>{service.description}</p>
 
       <p>

@@ -28,6 +28,9 @@ function ServiceDetail() {
       {/* SINISTRA */}
       <div style={{ width: "60%" }}>
         <h1>{service.title}</h1>
+        <p style={{ color: "gray" }}>
+          by {service.freelancer?.email || "User"}
+        </p>
 
         <p style={{ marginTop: "20px", lineHeight: "1.6" }}>
           {service.description}

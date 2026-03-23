@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 function EditService() {
   const { id } = useParams();
 
