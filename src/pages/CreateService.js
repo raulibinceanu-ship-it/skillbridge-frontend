@@ -5,6 +5,7 @@ function CreateService() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -29,6 +30,7 @@ function CreateService() {
         description,
         price: Number(price),
         category,
+        imageUrl,
       }),
     })
       .then((res) => res.json())
@@ -75,6 +77,11 @@ function CreateService() {
           placeholder="Category (ex. Web Development)"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+        />
+        <input
+          placeholder="Image URL"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
         />
 
         <button onClick={createService}>Create Service</button>

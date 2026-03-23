@@ -25,6 +25,16 @@ function ServiceCard({ service, onDelete }) {
       }}
     >
       <p style={{ fontSize: "12px", color: "gray" }}>{service.category}</p>
+      <img
+        src={service.imageUrl}
+        alt=""
+        style={{
+          width: "100%",
+          height: "150px",
+          objectFit: "cover",
+          borderRadius: "10px",
+        }}
+      />
       <h3>{service.title}</h3>
 
       <p style={{ color: "#555" }}>{service.description}</p>

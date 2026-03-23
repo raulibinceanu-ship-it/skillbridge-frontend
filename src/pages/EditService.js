@@ -8,6 +8,7 @@ function EditService() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/api/services/" + id)
@@ -17,6 +18,7 @@ function EditService() {
         setDescription(data.description);
         setPrice(data.price);
         setCategory(data.category);
+        setImageUrl(data.imageUrl);
       });
   }, [id]);
 
@@ -27,13 +29,14 @@ function EditService() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
         title,
         description,
         price,
         category,
+        imageUrl,
       }),
     }).then(() => {
       alert("Service updated!");
@@ -58,6 +61,13 @@ function EditService() {
       <br />
 
       <input value={category} onChange={(e) => setCategory(e.target.value)} />
+      <br />
+
+      <input
+        placeholder="Image URL"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
+      />
       <br />
 
       <button onClick={updateService}>Save</button>
