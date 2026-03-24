@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ServiceCard from "../components/ServiceCard";
 
 function Home() {
@@ -32,36 +31,77 @@ function Home() {
 
   return (
     <div className="container">
-      <h1>Available Services</h1>
+      <h1 style={{ textAlign: "center", marginBottom: "10px" }}>
+        Find the perfect service
+      </h1>
+
+      <p style={{ textAlign: "center", color: "gray", marginBottom: "20px" }}>
+        Explore services from freelancers around the world 🌍
+      </p>
 
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        <Link to="/create-service">
-          <button className="button">+ Create Service</button>
-        </Link>
+        <button
+          onClick={() => {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+              alert("You must login first");
+              window.location.href = "/login";
+            } else {
+              window.location.href = "/create-service";
+            }
+          }}
+          style={{
+            padding: "10px 15px",
+            backgroundColor: "#1dbf73",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          + Create Service
+        </button>
       </div>
 
       <div style={{ marginBottom: "20px", textAlign: "center" }}>
         <input
-          placeholder="Category"
+          placeholder="Search by category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          style={{ marginRight: "10px", padding: "8px" }}
+          style={{
+            marginRight: "10px",
+            padding: "10px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
         />
 
         <input
-          placeholder="Max Price"
+          placeholder="Max price (€)"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
-          style={{ padding: "8px" }}
+          style={{
+            padding: "10px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
         />
       </div>
 
       {loading ? (
         <p className="loading">Loading...</p>
       ) : services.length === 0 ? (
-        <p className="loading">No services available</p>
+        <p style={{ textAlign: "center" }}>No services available </p>
       ) : (
-        <div className="services-grid">
+        <div
+          className="services-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+            gap: "20px",
+          }}
+        >
           {services.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

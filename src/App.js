@@ -20,7 +20,7 @@ function App() {
         <Route path="/my-services" element={<MyServices />} />
         <Route path="/register" element={<Register />} />
         <Route path="/edit/:id" element={<EditService />} />
-        <Route path="/service/:id" element={<ServiceDetail />} />
+        <Route path="/services/:id" element={<ServiceDetail />} />
       </Routes>
     </Router>
   );

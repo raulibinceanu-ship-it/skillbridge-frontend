@@ -6,87 +6,98 @@ function ServiceDetail() {
   const [service, setService] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/services/" + id)
+    fetch(`http://localhost:8080/api/services/${id}`)
       .then((res) => res.json())
       .then((data) => setService(data))
       .catch((err) => console.log(err));
   }, [id]);
 
-  if (!service) {
-    return <p style={{ textAlign: "center" }}>Loading...</p>;
-  }
+  if (!service) return <p style={{ textAlign: "center" }}>Loading...</p>;
 
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
-        gap: "40px",
+        gap: "50px",
         padding: "40px",
+        maxWidth: "1200px",
+        margin: "0 auto",
+        alignItems: "flex-start",
       }}
     >
-      {/* SINISTRA */}
-      <div style={{ width: "60%" }}>
+      <div style={{ flex: 2 }}>
+        <img
+          src={
+            service.imageUrl ||
+            "https://via.placeholder.com/800x400?text=Service+Image"
+          }
+          alt={service.title}
+          style={{
+            width: "100%",
+            height: "180px",
+            objectFit: "cover",
+          }}
+        />
+
         <h1>{service.title}</h1>
-        <p style={{ color: "gray" }}>
+
+        <p style={{ color: "gray", marginBottom: "20px" }}>
           by {service.freelancer?.email || "User"}
         </p>
 
-        <p style={{ marginTop: "20px", lineHeight: "1.6" }}>
+        <p style={{ lineHeight: "1.7", fontSize: "16px" }}>
           {service.description}
-        </p>
-
-        <hr style={{ margin: "20px 0" }} />
-
-        <h3>About this service</h3>
-        <p>
-          This service includes full support and delivery based on your needs.
-        </p>
-
-        <p style={{ marginTop: "10px", color: "gray" }}>
-          Category: {service.category}
         </p>
       </div>
 
-      {/* DESTRA */}
       <div
         style={{
-          width: "280px",
+          flex: 1,
           border: "1px solid #ddd",
           borderRadius: "10px",
           padding: "20px",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-          height: "fit-content",
+          position: "sticky",
+          top: "20px",
+          backgroundColor: "white",
         }}
       >
-        <h2>{service.price} €</h2>
+        <h2 style={{ marginBottom: "10px" }}>{service.price} €</h2>
 
-        <p style={{ fontSize: "14px", color: "gray" }}>Delivery in 3 days</p>
+        <p style={{ fontSize: "14px", color: "gray" }}>
+          High quality service guaranteed
+        </p>
 
         <button
           onClick={() => {
             const token = localStorage.getItem("token");
 
             if (!token) {
-              alert("Login required");
+              alert("Devi fare login prima");
               window.location.href = "/login";
             } else {
-              alert("Order placed (fake)");
+              alert("Ordine simulato 🚀");
             }
           }}
           style={{
-            marginTop: "20px",
             width: "100%",
-            padding: "10px",
+            marginTop: "20px",
+            padding: "12px",
             backgroundColor: "#1dbf73",
             color: "white",
             border: "none",
             borderRadius: "5px",
+            fontWeight: "bold",
             cursor: "pointer",
           }}
         >
           Continue
         </button>
+
+        <ul style={{ marginTop: "20px", fontSize: "14px" }}>
+          <li>✔️ Fast delivery</li>
+          <li>✔️ 100% satisfaction</li>
+          <li>✔️ Support included</li>
+        </ul>
       </div>
     </div>
   );

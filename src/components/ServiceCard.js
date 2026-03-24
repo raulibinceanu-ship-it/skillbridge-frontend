@@ -1,93 +1,45 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function ServiceCard({ service, onDelete }) {
-  const navigate = useNavigate();
-
+function ServiceCard({ service }) {
   return (
-    <div
-      onClick={() => navigate("/service/" + service.id)}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "scale(1.03)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "10px",
-        padding: "15px",
-        margin: "10px",
-        width: "250px",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-        backgroundColor: "white",
-        cursor: "pointer",
-        transition: "0.2s",
-      }}
+    <Link
+      to={`/services/${service.id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      <p style={{ fontSize: "12px", color: "gray" }}>{service.category}</p>
-      <img
-        src={service.imageUrl}
-        alt=""
+      <div
         style={{
-          width: "100%",
-          height: "150px",
-          objectFit: "cover",
+          border: "1px solid #ddd",
           borderRadius: "10px",
+          overflow: "hidden",
+          cursor: "pointer",
+          transition: "0.3s",
+          backgroundColor: "white",
         }}
-      />
-      <h3>{service.title}</h3>
-      <p style={{ fontSize: "12px", color: "gray" }}>
-        by {service.freelancer?.email || "User"}
-      </p>
-      <p style={{ color: "#555" }}>{service.description}</p>
+        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      >
+        <img
+          src={
+            service.imageUrl ||
+            "https://via.placeholder.com/300x180?text=No+Image"
+          }
+          alt={service.title}
+          style={{ width: "100%", height: "180px", objectFit: "cover" }}
+        />
 
-      <p>
-        <b>{service.price} €</b>
-      </p>
+        <div style={{ padding: "10px" }}>
+          <p style={{ fontSize: "12px", color: "gray" }}>{service.category}</p>
 
-      <p style={{ fontSize: "12px", color: "gray", transition: "0.2s" }}>
-        {service.category}
-      </p>
+          <h3 style={{ fontSize: "16px" }}>{service.title}</h3>
 
-      {onDelete && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(service.id);
-          }}
-          style={{
-            backgroundColor: "red",
-            color: "white",
-            border: "none",
-            padding: "5px 10px",
-            borderRadius: "5px",
-            cursor: "pointer",
-            marginTop: "10px",
-          }}
-        >
-          Delete
-        </button>
-      )}
-      {onDelete && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            window.location.href = "/edit/" + service.id;
-          }}
-          style={{
-            backgroundColor: "blue",
-            color: "white",
-            border: "none",
-            padding: "5px 10px",
-            borderRadius: "5px",
-            cursor: "pointer",
-            marginTop: "5px",
-          }}
-        >
-          Edit
-        </button>
-      )}
-    </div>
+          <p style={{ color: "#f5c518" }}>⭐⭐⭐⭐☆</p>
+
+          <p>
+            <b>{service.price} €</b>
+          </p>
+        </div>
+      </div>
+    </Link>
   );
 }
 
