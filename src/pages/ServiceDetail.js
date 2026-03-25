@@ -4,6 +4,25 @@ import { useParams } from "react-router-dom";
 function ServiceDetail() {
   const { id } = useParams();
   const [service, setService] = useState(null);
+  const token = localStorage.getItem("token");
+  {
+    token && (
+      <button
+        onClick={() => (window.location.href = `/edit/${service.id}`)}
+        style={{
+          marginTop: "20px",
+          padding: "10px",
+          backgroundColor: "#ff9800",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Edit Service
+      </button>
+    );
+  }
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/services/${id}`)
