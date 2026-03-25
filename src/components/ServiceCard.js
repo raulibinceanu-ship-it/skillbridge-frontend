@@ -20,11 +20,18 @@ function ServiceCard({ service }) {
       >
         <img
           src={
-            service.imageUrl ||
-            "https://via.placeholder.com/300x180?text=No+Image"
+            service.imageUrl
+              ? service.imageUrl
+              : "https://via.placeholder.com/300x180?text=No+Image"
           }
           alt={service.title}
-          style={{ width: "100%", height: "180px", objectFit: "cover" }}
+          style={{
+            width: "100%",
+            height: "180px",
+            objectFit: "cover",
+            borderTopLeftRadius: "10px",
+            borderTopRightRadius: "10px",
+          }}
         />
 
         <div style={{ padding: "10px" }}>

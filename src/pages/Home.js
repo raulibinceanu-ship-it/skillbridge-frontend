@@ -21,12 +21,22 @@ function Home() {
     }
 
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Errore fetch");
+        }
+        return res.json();
+      })
       .then((data) => {
         setServices(data);
-        setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.log("Errore:", err);
+        setServices([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [category, maxPrice]);
 
   return (
