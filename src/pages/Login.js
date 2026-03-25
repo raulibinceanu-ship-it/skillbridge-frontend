@@ -23,6 +23,7 @@ function Login() {
       })
       .then((data) => {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("email", email);
         window.location.href = "/my-services";
       })
       .catch(() => {

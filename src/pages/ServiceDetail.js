@@ -4,25 +4,9 @@ import { useParams } from "react-router-dom";
 function ServiceDetail() {
   const { id } = useParams();
   const [service, setService] = useState(null);
+
   const token = localStorage.getItem("token");
-  {
-    token && (
-      <button
-        onClick={() => (window.location.href = `/edit/${service.id}`)}
-        style={{
-          marginTop: "20px",
-          padding: "10px",
-          backgroundColor: "#ff9800",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Edit Service
-      </button>
-    );
-  }
+  const userEmail = localStorage.getItem("email");
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/services/${id}`)
@@ -34,90 +18,64 @@ function ServiceDetail() {
   if (!service) return <p style={{ textAlign: "center" }}>Loading...</p>;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "50px",
-        padding: "40px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        alignItems: "flex-start",
-      }}
-    >
-      <div style={{ flex: 2 }}>
-        <img
-          src={
-            service.imageUrl ||
-            "https://via.placeholder.com/800x400?text=Service+Image"
-          }
-          alt={service.title}
-          style={{
-            width: "100%",
-            height: "180px",
-            objectFit: "cover",
-          }}
-        />
+    <div style={{ padding: "40px" }}>
+      <img
+        src={
+          service.imageUrl ||
+          "https://via.placeholder.com/800x400?text=Service+Image"
+        }
+        alt={service.title}
+        style={{ width: "100%", height: "200px", objectFit: "cover" }}
+      />
 
-        <h1>{service.title}</h1>
+      <h1>{service.title}</h1>
 
-        <p style={{ color: "gray", marginBottom: "20px" }}>
-          by {service.freelancer?.email || "User"}
-        </p>
+      <p style={{ color: "gray" }}>by {service.freelancer?.email || "User"}</p>
 
-        <p style={{ lineHeight: "1.7", fontSize: "16px" }}>
-          {service.description}
-        </p>
-      </div>
+      <p>{service.description}</p>
 
-      <div
-        style={{
-          flex: 1,
-          border: "1px solid #ddd",
-          borderRadius: "10px",
-          padding: "20px",
-          position: "sticky",
-          top: "20px",
-          backgroundColor: "white",
-        }}
-      >
-        <h2 style={{ marginBottom: "10px" }}>{service.price} €</h2>
+      <h2>{service.price} €</h2>
 
-        <p style={{ fontSize: "14px", color: "gray" }}>
-          High quality service guaranteed
-        </p>
-
+      {service.freelancer?.email === userEmail && (
         <button
-          onClick={() => {
-            const token = localStorage.getItem("token");
-
-            if (!token) {
-              alert("Devi fare login prima");
-              window.location.href = "/login";
-            } else {
-              alert("Ordine simulato 🚀");
-            }
-          }}
+          onClick={() => (window.location.href = `/edit/${service.id}`)}
           style={{
-            width: "100%",
             marginTop: "20px",
-            padding: "12px",
-            backgroundColor: "#1dbf73",
+            padding: "10px",
+            backgroundColor: "#ff9800",
             color: "white",
             border: "none",
             borderRadius: "5px",
-            fontWeight: "bold",
             cursor: "pointer",
           }}
         >
-          Continue
+          Edit Service
         </button>
+      )}
 
-        <ul style={{ marginTop: "20px", fontSize: "14px" }}>
-          <li>✔️ Fast delivery</li>
-          <li>✔️ 100% satisfaction</li>
-          <li>✔️ Support included</li>
-        </ul>
-      </div>
+      <button
+        onClick={() => {
+          if (!token) {
+            alert("Devi fare login prima");
+            window.location.href = "/login";
+          } else {
+            alert(
+              "Ordine simulato con successo! (Non c'è un vero ordine dietro)",
+            );
+          }
+        }}
+        style={{
+          marginTop: "20px",
+          padding: "12px",
+          backgroundColor: "#1dbf73",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Continue
+      </button>
     </div>
   );
 }
