@@ -2,35 +2,29 @@ import { Link } from "react-router-dom";
 
 function ServiceCard({ service }) {
   return (
-    <Link
-      to={`/services/${service.id}`}
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
+    <Link to={`/services/${service.id}`} style={{ textDecoration: "none" }}>
       <div
         style={{
           border: "1px solid #ddd",
           borderRadius: "10px",
           overflow: "hidden",
-          cursor: "pointer",
-          transition: "0.3s",
           backgroundColor: "white",
+          transition: "0.3s",
+          cursor: "pointer",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
         onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
         <img
           src={
-            service.imageUrl
-              ? service.imageUrl
-              : "https://via.placeholder.com/300x180?text=No+Image"
+            service.imageUrl ||
+            "https://via.placeholder.com/300x180?text=Service"
           }
           alt={service.title}
           style={{
             width: "100%",
             height: "180px",
             objectFit: "cover",
-            borderTopLeftRadius: "10px",
-            borderTopRightRadius: "10px",
           }}
         />
 
@@ -39,7 +33,7 @@ function ServiceCard({ service }) {
 
           <h3 style={{ fontSize: "16px" }}>{service.title}</h3>
 
-          <p style={{ color: "#f5c518" }}>⭐⭐⭐⭐☆</p>
+          <p style={{ color: "#f5c518" }}>⭐⭐⭐⭐⭐</p>
 
           <p>
             <b>{service.price} €</b>

@@ -3,71 +3,39 @@ import { Link } from "react-router-dom";
 function Navbar() {
   const token = localStorage.getItem("token");
 
-  const handleLogout = () => {
+  const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     window.location.href = "/";
   };
 
   return (
-    <nav
+    <div
       style={{
-        backgroundColor: "#333",
-        padding: "15px",
         display: "flex",
         justifyContent: "space-between",
+        padding: "15px 30px",
+        borderBottom: "1px solid #eee",
+        alignItems: "center",
       }}
     >
-      <div>
-        <Link to="/" style={{ color: "white", marginRight: "15px" }}>
-          Home
-        </Link>
+      <h2 style={{ color: "#1dbf73" }}>SkillBridge</h2>
 
-        {token && (
-          <>
-            <Link
-              to="/create-service"
-              style={{ color: "white", marginRight: "15px" }}
-            >
-              Create
-            </Link>
+      <div style={{ display: "flex", gap: "15px" }}>
+        <Link to="/">Home</Link>
 
-            <Link
-              to="/my-services"
-              style={{ color: "white", marginRight: "15px" }}
-            >
-              My Services
-            </Link>
-          </>
-        )}
-      </div>
+        {token && <Link to="/my-services">My Services</Link>}
 
-      <div>
         {!token ? (
           <>
-            <Link to="/login" style={{ color: "white", marginRight: "15px" }}>
-              Login
-            </Link>
-
-            <Link to="/register" style={{ color: "white" }}>
-              Register
-            </Link>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </>
         ) : (
-          <button
-            onClick={handleLogout}
-            style={{
-              backgroundColor: "red",
-              color: "white",
-              border: "none",
-              padding: "5px 10px",
-              cursor: "pointer",
-            }}
-          >
-            Logout
-          </button>
+          <button onClick={logout}>Logout</button>
         )}
       </div>
-    </nav>
+    </div>
   );
 }
 
