@@ -24,7 +24,12 @@ function Navbar() {
       <div style={{ display: "flex", gap: "15px" }}>
         <Link to="/">Home</Link>
 
-        {token && <Link to="/my-services">My Services</Link>}
+        {token && (
+          <>
+            <Link to="/my-services">My Services</Link>
+            <Link to="/profile">Profile</Link>
+          </>
+        )}
 
         {!token ? (
           <>

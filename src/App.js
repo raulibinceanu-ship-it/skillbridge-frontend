@@ -8,6 +8,7 @@ import "./App.css";
 import Register from "./pages/Register";
 import ServiceDetail from "./pages/ServiceDetail";
 import EditService from "./pages/EditService";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/edit/:id" element={<EditService />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
