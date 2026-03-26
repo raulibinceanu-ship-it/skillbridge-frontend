@@ -11,6 +11,9 @@ function ServiceCard({ service }) {
           backgroundColor: "white",
           transition: "0.3s",
           cursor: "pointer",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
         onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
@@ -26,10 +29,11 @@ function ServiceCard({ service }) {
             width: "100%",
             height: "180px",
             objectFit: "cover",
+            display: "block",
           }}
         />
 
-        <div style={{ padding: "10px" }}>
+        <div style={{ padding: "10px", flexGrow: 1 }}>
           <p style={{ fontSize: "12px", color: "gray" }}>{service.category}</p>
 
           <h3 style={{ fontSize: "16px" }}>{service.title}</h3>
