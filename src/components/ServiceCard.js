@@ -17,8 +17,9 @@ function ServiceCard({ service }) {
       >
         <img
           src={
-            service.imageUrl ||
-            "https://via.placeholder.com/300x180?text=Service"
+            service.imageUrl && service.imageUrl.startsWith("http")
+              ? service.imageUrl
+              : "https://via.placeholder.com/300x180?text=Service"
           }
           alt={service.title}
           style={{
